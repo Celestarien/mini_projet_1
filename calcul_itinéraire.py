@@ -13,13 +13,18 @@ dest = input('Arrivé: ')
 # Génération du lien
 url ='https://maps.googleapis.com/maps/api/distancematrix/json?'
 
+
+# Ajoute des paramètres nécessaires pour calculer le trajet
+requete = requests.get(
+    (
+        (
+            (((f'{url}origins={dep}' + '&destinations=') + dest) + '&key=')
+            + api_key
+        )
+        + '&transitmode=bus'
+    )
+)
  
-# Ajoute des paramètres nécessaires pour calculer le trajet 
-requete = requests.get(url + 'origins=' + dep +
-				'&destinations=' + dest +
-				'&key=' + api_key + '&transitmode=bus'
-				# + '&sensor=false'
-				) 
 					
 
 # Met le résultat final en format JSON 
